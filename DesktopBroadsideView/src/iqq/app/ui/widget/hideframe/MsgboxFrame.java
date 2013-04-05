@@ -1,6 +1,7 @@
 package iqq.app.ui.widget.hideframe;
 
 /**
+ * ä¾§è¾¹éšè—
  * @author ZhiHui_Chen<6208317@qq.com>
  * @create date 2013-4-3
  */
@@ -19,27 +20,27 @@ import javax.swing.Timer;
 public class MsgboxFrame extends JFrame implements ActionListener {
 	private static final long serialVersionUID = -496898429932291825L;
 
-	private int sideWidth = 100; // ±ß¿í¶È
-	private int side = 5; // ×óÏÔÊ¾¶àÉÙÒş²Øºó¿É¼û£¬×îÉÙÎª1
+	private int sideWidth = 100; // è¾¹å®½åº¦
+	private int side = 5; // å·¦æ˜¾ç¤ºå¤šå°‘éšè—åå¯è§ï¼Œæœ€å°‘ä¸º1
 	private int gap = 0;
 
 	private Rectangle rect;
-	private int frameLeft;// ´°ÌåÀëÆÁÄ»×ó±ßµÄ¾àÀë
-	private int frameRight;// ´°ÌåÀëÆÁÄ»ÓÒ±ßµÄ¾àÀë£»
-	private int frameTop;// ´°ÌåÀëÆÁÄ»¶¥²¿µÄ¾àÀë
-	private int frameWidth; // ´°ÌåµÄ¿í
-	private int frameHeight; // ´°ÌåµÄ¸ß
+	private int frameLeft;// çª—ä½“ç¦»å±å¹•å·¦è¾¹çš„è·ç¦»
+	private int frameRight;// çª—ä½“ç¦»å±å¹•å³è¾¹çš„è·ç¦»ï¼›
+	private int frameTop;// çª—ä½“ç¦»å±å¹•é¡¶éƒ¨çš„è·ç¦»
+	private int frameWidth; // çª—ä½“çš„å®½
+	private int frameHeight; // çª—ä½“çš„é«˜
 
-	private int screenXX;// ÆÁÄ»µÄ¿í¶È£»
-	private Point point; // Êó±êÔÚ´°ÌåµÄÎ»ÖÃ
+	private int screenXX;// å±å¹•çš„å®½åº¦ï¼›
+	private Point point; // é¼ æ ‡åœ¨çª—ä½“çš„ä½ç½®
 
-	private Timer timer = new Timer(300, this);
+	private Timer timer = new Timer(10, this);
 	private IPosition position;
 
 	public MsgboxFrame() {
-
+		
 	}
-
+	
 	public void start() {
 		timer.start();
 	}
@@ -53,38 +54,38 @@ public class MsgboxFrame extends JFrame implements ActionListener {
 		screenXX = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 		frameRight = screenXX - frameLeft - frameWidth;
 
-		// »ñÈ¡´°ÌåµÄÂÖÀª
+		// è·å–çª—ä½“çš„è½®å»“
 		rect = new Rectangle(0, 0, frameWidth, frameHeight);
-		// »ñÈ¡Êó±êÔÚ´°ÌåµÄÎ»ÖÃ
+		// è·å–é¼ æ ‡åœ¨çª—ä½“çš„ä½ç½®
 		point = getMousePosition();
 
 		if (position == Positions.LEFT) {
 			if (frameLeft < 0 && isPtInRect(rect, point)) {
-				setLocation(0, frameTop); // Òş²ØÔÚ×ó±ß£¬Êó±êÖ¸µ½ºóÏÔÊ¾´°Ìå£»
+				setLocation(0, frameTop); // éšè—åœ¨å·¦è¾¹ï¼Œé¼ æ ‡æŒ‡åˆ°åæ˜¾ç¤ºçª—ä½“ï¼›
 			} else if (frameLeft > -side + 1 && frameLeft < side + 1
 					&& !(isPtInRect(rect, point))) {
-				setLocation(frameLeft - frameWidth + side, frameTop); // ´°ÌåÒÆµ½×ó±ß±ßÔµÒş²Øµ½×ó±ß£»
+				setLocation(frameLeft - frameWidth + side, frameTop); // çª—ä½“ç§»åˆ°å·¦è¾¹è¾¹ç¼˜éšè—åˆ°å·¦è¾¹ï¼›
 			}
 		} else if (position == Positions.TOP) {
 			if (frameTop < 0 && isPtInRect(rect, point)) {
-				setLocation(frameLeft, frameTop + side); // Òş²ØÔÚ×ó±ß£¬Êó±êÖ¸µ½ºóÏÔÊ¾´°Ìå£»
+				setLocation(frameLeft, frameTop + side); // éšè—åœ¨å·¦è¾¹ï¼Œé¼ æ ‡æŒ‡åˆ°åæ˜¾ç¤ºçª—ä½“ï¼›
 			} else if (frameTop > -side + 1 && frameTop < side + 1
 					&& !(isPtInRect(rect, point))) {
-				setLocation(frameLeft, frameTop - frameHeight + side); // ´°ÌåÒÆµ½ÆÁÄ»ºóÒş²Ø
+				setLocation(frameLeft, frameTop - frameHeight + side); // çª—ä½“ç§»åˆ°å±å¹•åéšè—
 			}
 		} else if (position == Positions.RIGHT) {
 			if (frameRight < 0 && isPtInRect(rect, point)) {
-				setLocation(screenXX - frameWidth, frameTop);// Êó±êÖ¸µ½ºóÏÔÊ¾£»
+				setLocation(screenXX - frameWidth, frameTop);// é¼ æ ‡æŒ‡åˆ°åæ˜¾ç¤ºï¼›
 			} else if (frameRight > -side - 1 && frameRight < side + 1
 					&& !(isPtInRect(rect, point))) {
-				setLocation(screenXX - side, frameTop); // ´°ÌåÒÆµ½ÆÁÄ»ºóÒş²Ø
+				setLocation(screenXX - side, frameTop); // çª—ä½“ç§»åˆ°å±å¹•åéšè—
 			}
 		}
 
 	}
 
 	/**
-	 * ¼ì²âÊÇ·ñÔÚ¾ØĞÎ¿òÄÚ
+	 * æ£€æµ‹æ˜¯å¦åœ¨çŸ©å½¢æ¡†å†…
 	 * 
 	 * @param rect
 	 * @param point
@@ -117,11 +118,11 @@ public class MsgboxFrame extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		MsgboxFrame frame = new MsgboxFrame();
-		frame.setPosition(Positions.RIGHT, 100, 10, 100); // ÉèÖÃÔÚÆÁÄ»ÏÔÊ¾µØ·½
+		frame.setPosition(Positions.RIGHT, 100, 2, 100); // è®¾ç½®åœ¨å±å¹•æ˜¾ç¤ºåœ°æ–¹
 		frame.getContentPane().setBackground(new Color(20, 20, 20));
-		frame.start();
 		frame.setVisible(true);
-
+		frame.start();
+		
 		JLabel title = new JLabel("Message Box");
 		title.setForeground(Color.WHITE);
 		JPanel p = new JPanel();
